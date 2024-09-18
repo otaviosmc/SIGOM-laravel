@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('situacao', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
+            $table->date('created_at');
+            $table->date('updated_at');
         });
 
         Schema::create('blocos', function (Blueprint $table) {
@@ -28,6 +30,8 @@ return new class extends Migration
             $table->string('nome');
             $table->foreignId('bloco_id')
                   ->constrained('bloco');
+            $table->date('created_at');
+            $table->date('updated_at');
         });
 
         Schema::create('ocorrencia', function (Blueprint $table) {
@@ -41,6 +45,8 @@ return new class extends Migration
             $table->foreignId('situacao_id')
                   ->constrained('situacao');
             $table->string('descricao');
+            $table->date('created_at');
+            $table->date('updated_at');
         });
 
         Schema::create('atendente', function (Blueprint $table) {
@@ -49,6 +55,8 @@ return new class extends Migration
                   ->constrained('ocorrencia');
             $table->foreignId('usuario_id')
                   ->constrained('users');
+            $table->date('created_at');
+            $table->date('updated_at');
         });
 
         Schema::create('imagem_ocorrencia', function (Blueprint $table) {
@@ -56,6 +64,8 @@ return new class extends Migration
             $table->binary('imagem');
             $table->foreignId('ocorrencia_id')
                   ->constrained('ocorrencia');
+            $table->date('created_at');
+            $table->date('updated_at');
         });
 
         

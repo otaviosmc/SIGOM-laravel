@@ -39,22 +39,26 @@ Route::get('/situacao', function () {
     return redirect('/index');
 })->middleware(['auth', 'verified'])->name('situacao');
 
-Route::get('/blocos', function () {
+Route::get('/bloco', function () {
     if (Auth::user() && Auth::user()->is_admin == 1){
-    return Inertia::render('CadastrosBasicos/Blocos');
+    return Inertia::render('CadastrosBasicos/Bloco');
     }
     return redirect('/index');
-})->middleware(['auth', 'verified'])->name('blocos.create');
+})->middleware(['auth', 'verified'])->name('bloco.create');
 
-Route::post('/blocos', [BlocoController::class, 'store'])
+Route::post('/bloco', [BlocoController::class, 'store'])
     ->middleware(['auth', 'verified'])
-    ->name('blocos.store');
+    ->name('bloco.store');
     
-Route::get('/areas', function () {
+Route::get('/area', function () {
     if (Auth::user() && Auth::user()->is_admin == 1){
-    return Inertia::render('CadastrosBasicos/Areas');
+    return Inertia::render('CadastrosBasicos/Area');
     }
     return redirect('/index');
-})->middleware(['auth', 'verified'])->name('areas');
+})->middleware(['auth', 'verified'])->name('area.create');
+
+Route::post('/area', [BlocoController::class, 'store'])
+    ->middleware(['auth', 'verified'])
+    ->name('area.store');
 
 require __DIR__.'/auth.php';

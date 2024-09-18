@@ -28,8 +28,8 @@ export default function Authenticated({ user, header, children }) {
                             </div>
                             
                             {admin == 1 ? <ButtonAdmin nome ="Situações" rota ="situacao"></ButtonAdmin>: false}
-                            {admin == 1? <ButtonAdmin nome ="Blocos" rota ="blocos.store"></ButtonAdmin> : false}
-                            {admin == 1? <ButtonAdmin nome ="Áreas" rota ="areas"></ButtonAdmin>  : false}
+                            {admin == 1? <ButtonAdmin nome ="Blocos" rota ="bloco.store"></ButtonAdmin> : false}
+                            {admin == 1? <ButtonAdmin nome ="Áreas" rota ="area.store"></ButtonAdmin>  : false}
                             
                             
 

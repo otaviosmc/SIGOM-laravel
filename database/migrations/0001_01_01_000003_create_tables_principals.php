@@ -20,7 +20,7 @@ return new class extends Migration
 
         Schema::create('blocos', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('nome');
             $table->date('created_at');
             $table->date('updated_at');
         });

@@ -10,7 +10,7 @@ class BlocoController extends Controller
 {
     public function create()
     {
-        return Inertia::render('CadastrosBasicos/Blocos');
+        return Inertia::render('CadastrosBasicos/Bloco');
     }
 
     public function store(Request $request)
@@ -30,6 +30,6 @@ class BlocoController extends Controller
         ]);
 
         // Redireciona após a criação
-        return redirect()->route('blocos.create')->with('success', 'Bloco cadastrado com sucesso!');
+        return redirect()->route('bloco.create')->with('success', 'Bloco cadastrado com sucesso!');
     }
 }

@@ -10,4 +10,9 @@ class Bloco extends Model
     use HasFactory;
 
     protected $fillable = ['nome'];
+
+    public function area()
+    {
+        return $this->hasMany(Area::class, 'bloco_id');
+    }
 }

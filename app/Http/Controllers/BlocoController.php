@@ -10,7 +10,7 @@ class BlocoController extends Controller
 {
     public function create()
     {
-        return Inertia::render('CadastrosBasicos/Blocos');
+        return Inertia::render('CadastrosBasicos/BlocosCadastrar');
     }
 
     public function store(Request $request)
@@ -30,6 +30,29 @@ class BlocoController extends Controller
         ]);
 
         // Redireciona após a criação
-        return redirect()->route('blocos.create')->with('success', 'Bloco cadastrado com sucesso!');
+        return redirect()->route('blocos.store')->with('success', 'Bloco cadastrado com sucesso!');
     }
+    public function index(){
+        if (!Auth::check() || !Auth::user()->is_admin) {
+            return redirect('/index');
+        }
+
+        $blocos = Bloco::all();
+        return Inertia::render('CadastrosBasicos/Blocos', [
+            'blocos' => $blocos,
+        ]);
+    }
+
+    public function destroy($id)
+{
+
+    if (!Auth::check() || !Auth::user()->is_admin) {
+        return redirect('/index');
+    }
+
+    $bloco = Bloco::findOrFail($id);
+    $bloco->delete();
+    
+    return redirect()->route('blocos.index')->with('success', 'Bloco excluído com sucesso!');
+}
 }

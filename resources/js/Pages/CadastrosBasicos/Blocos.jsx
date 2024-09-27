@@ -7,18 +7,15 @@ import TextInput from '@/Components/TextInput';
 
 
 
-export default function Blocos({auth, flash}) {
-    const { data, setData, post, processing, errors, reset } = useForm({
-        name: '',
-    });
+export default function Blocos({auth, flash, blocos}) {
+    const { delete: destroy, processing } = useForm();
 
-    const submit = (e) => {
-        e.preventDefault();
-
-        post(route('blocos.create'), {
-            onSuccess: () => {reset()},
-        });
+    const handleDelete = (id) => {
+        if (confirm('Tem certeza que deseja excluir este bloco?')) {
+            destroy(route('blocos.destroy', id));
+        }
     };
+
     return (
         <AuthenticatedLayout
     user={auth.user}
@@ -26,29 +23,33 @@ export default function Blocos({auth, flash}) {
 >
     <Head title="Página Inicial" />
     
-    <form onSubmit={submit} className='max-w-7xl mx-auto sm:px-6 lg:px-8 py-12'>
-
-            <InputLabel htmlFor="nome" value="Nome do Bloco" />
-
-            <TextInput
-                id="nome"
-                name="nome"
-                value={data.nome}
-                className="mt-1 block w-full"
-                autoComplete="nome"
-                isFocused={true}
-                onChange={(e) => setData('nome', e.target.value)}
-                required
-            />
-            {flash.success && (
-                <div className="my-4 text-sm font-medium text-green-600">
-                    {flash.success}
-                </div>
-            )}
-            <PrimaryButton className="ms-4" disabled={processing}>
+    <div  className='max-w-7xl mx-auto sm:px-6 lg:px-8 py-12'>
+            <a className="inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150 false ms-4 my-2" href={route('blocos.create')}>
                 Cadastrar
-            </PrimaryButton> 
-    </form>
+            </a> 
+            <table className='w-full'>
+                <thead>
+                    <th>Número</th>
+                    <th className='text-left px-6'>Nome do Bloco</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                    {blocos.map((bloco) => (
+                    <tr key={bloco.id}>
+                        <td className='p-6 text-gray-900 dark:text-gray-100 border'>{bloco.id}</td>
+                        <td className='p-6 text-gray-900 dark:text-gray-100 border'> {bloco.nome}</td>
+                        <td className='border text-center'>
+                            <button
+                                onClick={() => handleDelete(bloco.id)}
+                                disabled={processing}
+                                className='px-2 py-1 font-bold text-red-600 hover:text-black-900 hover:bg-red-900 hover:text-white rounded-md transition'
+                            >Excluir</button>
+                        </td>
+                    </tr>
+                    ))}
+                </tbody>
+            </table>
+    </div>
 
 
 </AuthenticatedLayout>

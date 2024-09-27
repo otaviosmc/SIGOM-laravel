@@ -39,16 +39,23 @@ Route::get('/situacao', function () {
     return redirect('/index');
 })->middleware(['auth', 'verified'])->name('situacao');
 
-Route::get('/blocos', function () {
-    if (Auth::user() && Auth::user()->is_admin == 1){
-    return Inertia::render('CadastrosBasicos/Blocos');
+// ROTA DE BLOCOS
+
+Route::get('/blocos/cadastrar', function () {
+    if (Auth::user() && Auth::user()->is_admin == 1) {
+        return Inertia::render('CadastrosBasicos/BlocosCadastrar');
     }
     return redirect('/index');
 })->middleware(['auth', 'verified'])->name('blocos.create');
 
-Route::post('/blocos', [BlocoController::class, 'store'])
-    ->middleware(['auth', 'verified'])
-    ->name('blocos.store');
+Route::post('/blocos/cadastrar', [BlocoController::class, 'store'])->name('blocos.store');
+
+Route::get('/blocos', [BlocoController::class, 'index'])->name('blocos.index');
+
+route::delete('/blocos/{id}', [BlocoController::class, 'destroy'])->name('blocos.destroy');
+
+
+// -------------------------------
     
 Route::get('/areas', function () {
     if (Auth::user() && Auth::user()->is_admin == 1){
@@ -56,5 +63,7 @@ Route::get('/areas', function () {
     }
     return redirect('/index');
 })->middleware(['auth', 'verified'])->name('areas');
+
+
 
 require __DIR__.'/auth.php';

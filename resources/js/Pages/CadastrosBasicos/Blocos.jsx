@@ -7,7 +7,7 @@ import TextInput from '@/Components/TextInput';
 
 
 
-export default function Blocos({auth, flash, blocos}) {
+export default function Blocos({auth, flash,blocos}) {
     const { delete: destroy, processing } = useForm();
 
     const handleDelete = (id) => {
@@ -15,7 +15,7 @@ export default function Blocos({auth, flash, blocos}) {
             destroy(route('blocos.destroy', id));
         }
     };
-
+    
     return (
         <AuthenticatedLayout
     user={auth.user}
@@ -29,14 +29,12 @@ export default function Blocos({auth, flash, blocos}) {
             </a> 
             <table className='w-full'>
                 <thead>
-                    <th className='p-6 text-gray-900 dark:text-gray-100 border text-left'>Número</th>
                     <th className='p-6 text-gray-900 dark:text-gray-100 border text-left px-6'>Nome do Bloco</th>
                     <th></th>
                 </thead>
                 <tbody>
                     {blocos.map((bloco) => (
                     <tr key={bloco.id}>
-                        <td className='p-6 text-gray-900 dark:text-gray-100 border'>{bloco.id}</td>
                         <td className='p-6 text-gray-900 dark:text-gray-100 border'> {bloco.nome}</td>
                         <td className='border text-center'>
                             <button

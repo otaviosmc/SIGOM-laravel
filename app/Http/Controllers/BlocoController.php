@@ -1,6 +1,5 @@
 <?php
 namespace App\Http\Controllers;
-
 use App\Models\Bloco;
 use Illuminate\Http\Request;
 use Inertia\Inertia;

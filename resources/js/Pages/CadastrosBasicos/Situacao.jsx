@@ -29,14 +29,12 @@ export default function Situacao({auth, flash, situacao}) {
             </a> 
             <table className='w-full'>
                 <thead>
-                    <th className='p-6 text-gray-900 dark:text-gray-100 border text-left'>Número</th>
                     <th className='p-6 text-gray-900 dark:text-gray-100 border text-left px-6'>Nome da situação</th>
                     <th></th>
                 </thead>
                 <tbody>
                     {situacao.map((sit) => (
                     <tr key={sit.id}>
-                        <td className='p-6 text-gray-900 dark:text-gray-100 border'>{sit.id}</td>
                         <td className='p-6 text-gray-900 dark:text-gray-100 border'> {sit.nome}</td>
                         <td className='border text-center'>
                             <button

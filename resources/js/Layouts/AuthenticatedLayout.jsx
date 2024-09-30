@@ -29,7 +29,7 @@ export default function Authenticated({ user, header, children }) {
                             
                             {admin == 1 ? <ButtonAdmin nome ="Situações" rota ="situacao.index"></ButtonAdmin>: false}
                             {admin == 1? <ButtonAdmin nome ="Blocos" rota ="blocos.index"></ButtonAdmin> : false}
-                            {admin == 1? <ButtonAdmin nome ="Áreas" rota ="areas"></ButtonAdmin>  : false}
+                            {admin == 1? <ButtonAdmin nome ="Áreas" rota ="area.index"></ButtonAdmin>  : false}
                             
                             
 

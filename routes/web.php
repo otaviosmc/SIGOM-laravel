@@ -5,6 +5,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\BlocoController;
+use App\Http\Controllers\SituacaoController;
 
 Route::get('/', function () {
     if (Auth::user()){
@@ -32,14 +33,14 @@ Route::get('/index', function () {
     return Inertia::render('Index');
 })->middleware(['auth', 'verified'])->name('index');
 
-Route::get('/situacao', function () {
-    if (Auth::user() && Auth::user()->is_admin == 1){
-    return Inertia::render('CadastrosBasicos/Situacao');
-    }
-    return redirect('/index');
-})->middleware(['auth', 'verified'])->name('situacao');
+// Route::get('/situacao', function () {
+//     if (Auth::user() && Auth::user()->is_admin == 1){
+//     return Inertia::render('CadastrosBasicos/Situacao');
+//     }
+//     return redirect('/index');
+// })->middleware(['auth', 'verified'])->name('situacao');
 
-// ROTA DE BLOCOS
+// ROTAS DE BLOCOS
 
 Route::get('/blocos/cadastrar', function () {
     if (Auth::user() && Auth::user()->is_admin == 1) {
@@ -56,10 +57,25 @@ route::delete('/blocos/{id}', [BlocoController::class, 'destroy'])->name('blocos
 
 
 // -------------------------------
+// ROTAS DE SITUAÇÕES
+Route::get('/situacao/cadastrar', function () {
+    if (Auth::user() && Auth::user()->is_admin == 1) {
+        return Inertia::render('CadastrosBasicos/SituacaoCadastrar');
+    }
+    return redirect('/index');
+})->middleware(['auth', 'verified'])->name('situacao.create');
+
+Route::post('/situacao/cadastrar', [SituacaoController::class, 'store'])->name('situacao.store');
+
+Route::get('/situacao', [SituacaoController::class, 'index'])->name('situacao.index');
+
+route::delete('/situacao/{id}', [SituacaoController::class, 'destroy'])->name('situacao.destroy');
+
+// -------------------------------
     
 Route::get('/areas', function () {
     if (Auth::user() && Auth::user()->is_admin == 1){
-    return Inertia::render('CadastrosBasicos/Areas');
+    return Inertia::render('CadastrosBasicos/Area');
     }
     return redirect('/index');
 })->middleware(['auth', 'verified'])->name('areas');

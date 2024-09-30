@@ -29,8 +29,8 @@ export default function Blocos({auth, flash, blocos}) {
             </a> 
             <table className='w-full'>
                 <thead>
-                    <th>Número</th>
-                    <th className='text-left px-6'>Nome do Bloco</th>
+                    <th className='p-6 text-gray-900 dark:text-gray-100 border text-left'>Número</th>
+                    <th className='p-6 text-gray-900 dark:text-gray-100 border text-left px-6'>Nome do Bloco</th>
                     <th></th>
                 </thead>
                 <tbody>

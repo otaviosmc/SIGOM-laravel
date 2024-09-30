@@ -27,8 +27,8 @@ export default function Authenticated({ user, header, children }) {
                                 </NavLink>
                             </div>
                             
-                            {admin == 1 ? <ButtonAdmin nome ="Situações" rota ="situacao"></ButtonAdmin>: false}
-                            {admin == 1? <ButtonAdmin nome ="Blocos" rota ="blocos.store"></ButtonAdmin> : false}
+                            {admin == 1 ? <ButtonAdmin nome ="Situações" rota ="situacao.index"></ButtonAdmin>: false}
+                            {admin == 1? <ButtonAdmin nome ="Blocos" rota ="blocos.index"></ButtonAdmin> : false}
                             {admin == 1? <ButtonAdmin nome ="Áreas" rota ="areas"></ButtonAdmin>  : false}
                             
                             

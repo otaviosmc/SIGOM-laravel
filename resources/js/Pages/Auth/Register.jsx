@@ -103,7 +103,7 @@ export default function Register() {
                     </Link>
 
                     <PrimaryButton className="ms-4" disabled={processing}>
-                        Cadastrar-se
+                        Registrar
                     </PrimaryButton>
                 </div>
             </form>

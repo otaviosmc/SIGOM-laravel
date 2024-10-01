@@ -8,12 +8,22 @@ import TextInput from '@/Components/TextInput';
 
 
 export default function Blocos({auth, flash,blocos}) {
+    const { data, setData, post, errors, reset } = useForm({
+        name: '',
+    });
     const { delete: destroy, processing } = useForm();
 
     const handleDelete = (id) => {
         if (confirm('Tem certeza que deseja excluir este bloco?')) {
             destroy(route('blocos.destroy', id));
         }
+    };
+    const submit = (e) => {
+        e.preventDefault();
+
+        post(route('blocos.store'), {
+            onSuccess: () => {reset()},
+        });
     };
     
     return (
@@ -22,11 +32,31 @@ export default function Blocos({auth, flash,blocos}) {
     header={<h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">Blocos</h2>}
 >
     <Head title="Página Inicial" />
-    
-    <div  className='max-w-7xl mx-auto sm:px-6 lg:px-8 py-12'>
-            <a className="inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150 false ms-4 my-2" href={route('blocos.create')}>
+    <form onSubmit={submit} className='max-w-7xl mx-auto sm:px-6 lg:px-8 py-12'>
+
+            <InputLabel htmlFor="nome" value="Nome do Bloco" />
+
+            <TextInput
+                id="nome"
+                name="nome"
+                value={data.nome}
+                className="mt-1 block w-full"
+                autoComplete="nome"
+                isFocused={true}
+                onChange={(e) => setData('nome', e.target.value)}
+                required
+            />
+            {flash.success && (
+                <div className="my-4 text-sm font-medium text-green-600">
+                    {flash.success}
+                </div>
+            )}
+            <PrimaryButton className="ms-4 my-2" disabled={processing}>
                 Cadastrar
-            </a> 
+            </PrimaryButton> 
+    </form>
+    
+    <div  className='max-w-7xl mx-auto sm:px-6 lg:px-8 py-2'>
             <table className='w-full'>
                 <thead>
                     <th className='p-6 text-gray-900 dark:text-gray-100 border text-left px-6'>Nome do Bloco</th>

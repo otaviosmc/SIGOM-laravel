@@ -11,7 +11,7 @@ class SituacaoController extends Controller
 {
     public function create()
     {
-        return Inertia::render('CadastrosBasicos/SituacaoCadastrar');
+
     }
 
     public function store(Request $request)

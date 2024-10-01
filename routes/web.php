@@ -32,30 +32,15 @@ Route::get('/index', function () {
 
 // ROTAS DE BLOCOS
 
-Route::get('/blocos/cadastrar', function () {
-    if (Auth::user() && Auth::user()->is_admin == 1) {
-        return Inertia::render('CadastrosBasicos/BlocosCadastrar');
-    }
-    return redirect('/index');
-})->middleware(['auth', 'verified'])->name('blocos.create');
-
-Route::post('/blocos/cadastrar', [BlocoController::class, 'store'])->name('blocos.store');
+Route::post('/blocos', [BlocoController::class, 'store'])->name('blocos.store');
 
 Route::get('/blocos', [BlocoController::class, 'index'])->name('blocos.index');
 
 route::delete('/blocos/{id}', [BlocoController::class, 'destroy'])->name('blocos.destroy');
 
-
 // -------------------------------
 // ROTAS DE SITUAÇÕES
-Route::get('/situacao/cadastrar', function () {
-    if (Auth::user() && Auth::user()->is_admin == 1) {
-        return Inertia::render('CadastrosBasicos/SituacaoCadastrar');
-    }
-    return redirect('/index');
-})->middleware(['auth', 'verified'])->name('situacao.create');
-
-Route::post('/situacao/cadastrar', [SituacaoController::class, 'store'])->name('situacao.store');
+Route::post('/situacao', [SituacaoController::class, 'store'])->name('situacao.store');
 
 Route::get('/situacao', [SituacaoController::class, 'index'])->name('situacao.index');
 
@@ -64,27 +49,13 @@ route::delete('/situacao/{id}', [SituacaoController::class, 'destroy'])->name('s
 // -------------------------------
 // ROTAS DE ÁREAS
 
-Route::get('/area/cadastrar', function () {
-    if (Auth::user() && Auth::user()->is_admin == 1) {
-        return Inertia::render('CadastrosBasicos/AreaCadastrar');
-    }
-    return redirect('/index');
-})->middleware(['auth', 'verified'])->name('area.create');
-
-Route::post('/area/cadastrar', [AreaController::class, 'store'])->name('area.store');
+Route::post('/area', [AreaController::class, 'store'])->name('area.store');
 
 Route::get('/area', [AreaController::class, 'index'])->name('area.index');
 
 route::delete('/area/{id}', [AreaController::class, 'destroy'])->name('area.destroy');
 
 //----------------------------------------------------------------
-    
-// Route::get('/areas', function () {
-//     if (Auth::user() && Auth::user()->is_admin == 1){
-//     return Inertia::render('CadastrosBasicos/Area');
-//     }
-//     return redirect('/index');
-// })->middleware(['auth', 'verified'])->name('areas');
 
 
 

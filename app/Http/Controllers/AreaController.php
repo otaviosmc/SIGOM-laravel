@@ -14,8 +14,8 @@ class AreaController extends Controller
     {
         // Se os blocos foram passados como parâmetro, você pode decodificá-los
         $blocos = Bloco::all();
-        return Inertia::render('CadastrosBasicos/AreaCadastrar', [
-            'blocos' => $blocos, // Pode ser usado conforme necessário
+        return Inertia::render('CadastrosBasicos/Area', [
+            'blocos' => $blocos,
         ]);
     }
 
@@ -46,8 +46,10 @@ class AreaController extends Controller
         }
 
         $area = Area::all();
+        $blocos = Bloco::all();
         return Inertia::render('CadastrosBasicos/Area', [
             'area' => $area,
+            'blocos'=> $blocos,
         ]);
     }
 

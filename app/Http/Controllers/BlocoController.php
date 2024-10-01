@@ -9,7 +9,7 @@ class BlocoController extends Controller
 {
     public function create()
     {
-        return Inertia::render('CadastrosBasicos/BlocosCadastrar');
+        // return Inertia::render('CadastrosBasicos/Blocos');
     }
 
     public function store(Request $request)
